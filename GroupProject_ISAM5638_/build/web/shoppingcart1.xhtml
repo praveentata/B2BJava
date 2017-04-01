@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Shopping Cart</title>
+        <h2 align="center">TATA SOLUTION</h2>
+    </h:head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+    <h:body>
+        <h:form id="formInput">
+            <h2 align="center">Welcome to Shopping Cart</h2>
+            
+
+                <div class="table-responsive">
+
+                    <p:dataTable id="showpo" rows="#{shoppingCart1.viewshoppingcart().size()}" value="#{shoppingCart1.viewshoppingcart()}"  var="m" tableStyleClass="table table-striped">
+                        <f:selectItem itemLabel="By Product Name" itemValue="Product Name"></f:selectItem>
+                        <p:column>
+                            <f:facet name="header">Item(#)</f:facet>
+
+                            <h:outputText id="userval22" value="#{m.itnumber}" style="position: relative; left:50px"></h:outputText> 
+                        </p:column> 
+                        <p:column>
+                            <f:facet name="header">User ID</f:facet>
+
+                            <h:outputText id="userval23" value="#{m.user_id}" style="position: relative; left:50px"></h:outputText> 
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Product Name</f:facet>
+                            <h:outputText id="userval33" value="#{m.proname}" style="position: relative; left:100px"></h:outputText> 
+                        </p:column> 
+
+                        <p:column>
+                            <f:facet name="header">Price</f:facet>
+                            <h:outputText id="userval66" value="#{m.pri}" style="position: relative; left:120px"></h:outputText> 
+
+                        </p:column> 
+
+                        <p:column>
+                            <f:facet name="header">Quantity</f:facet>
+                            <h:inputText id="keyword244"   value="#{m.quant}"  binding="#{inp}" style="width: 50px"></h:inputText>
+                        </p:column> 
+
+                        <p:column>
+                            <f:facet name="header">Total</f:facet>
+                            <h:outputText id="userval88" value="#{m.tot}" style="position: relative; left:120px"></h:outputText> 
+                        </p:column> 
+                        
+                       
+                        
+                        <p:column>
+                            <f:facet name="header">Status</f:facet>
+                            <h:outputText id="userval89" value="#{m.status}" style="position: relative; left:120px"></h:outputText> 
+                        </p:column> 
+                        
+                        <p:column>
+                            <f:facet name="header">Date</f:facet>
+                            <h:outputText id="userval90" value="#{m.date}" ></h:outputText> 
+                        </p:column> 
+                        
+                         <p:column>
+                            <f:facet name="header">Delete and Update </f:facet>
+                            <h:commandButton value="Delete" immediate="true"
+                                             action="#{shoppingCart1.delete(m.itnumber)}" class="btn-primary"  />
+                              &nbsp;
+                            <h:commandButton value="Update" immediate="true"
+                                             action="#{shoppingCart1.edit(m.itnumber, inp, m.pri)}" class="btn-primary"  />
+                        </p:column> 
+                        
+                    </p:dataTable>    
+                    
+                    <h:commandButton value="Send PO" immediate="true"  action="#{shoppingCart1.checkout()}" 
+                                     class="btn-primary" style="position: relative; left:800px"/>
+                    
+                    &nbsp;
+                    
+                     <h:commandButton value="Check PO sent to Supplier" immediate="true"  action="Posentsupplier" 
+                                     class="btn-primary" style="position: relative; left:800px"/>
+                     &nbsp;
+                    
+                    <h:commandButton value="Return to Home" immediate="true"  action="index" 
+                                     class="btn-primary" style="position: relative; left:800px"/>
+                    
+                    
+                   
+                </div> 
+            
+        </h:form>
+         
+
+        <h:outputLabel value="#{shoppingCart1.error_message}"  style="position: relative; left:500px"/>
+
+    </h:body>
+</html>
+

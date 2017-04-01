@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+        <link href="resources/css/datatable.css" rel="stylesheet" type="text/css"/>
+        
+        
+        <h:body style="background-image: url('Images/background-9.jpg'); background-position: top; background-size: cover">
+        <h:form>
+        <h3>***PURCHASE ORDER***</h3>
+        <h:dataTable value="#{backend.al1}" var="temp">
+                <h:column>
+
+                    <f:facet name="header" >
+                        PO NUMBER
+
+                    </f:facet>
+                    #{temp.po_num}
+                </h:column>
+                <h:column>
+
+                    <f:facet name="header" >
+                        USER ID
+
+                    </f:facet>
+                    #{temp.user_id}
+                </h:column>
+                <h:column>
+                
+                <f:facet name="header" >
+                    PO_STATUS
+                    
+                </f:facet>
+               #{temp.status}
+            </h:column>
+                <h:column>
+                
+                <f:facet name="header" >
+                    Price
+                    
+                </f:facet>
+               #{temp.total}
+            </h:column><h:column>
+                
+                <f:facet name="header" >
+                    Date Created
+                    
+                </f:facet>
+               #{temp.date}
+            </h:column>
+            <h:column>
+                
+                <f:facet name="header" >
+                    GENERATE INVOICE
+                    
+                </f:facet>
+                
+                <h:commandButton   action="#{backend.generate(temp)}" value="Generate"></h:commandButton>
+            </h:column>
+                
+                
+                    
+            
+
+
+            </h:dataTable>
+            
+             
+        </h:form>
+    </h:body>
+</html>
+
