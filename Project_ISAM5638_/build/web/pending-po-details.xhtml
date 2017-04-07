@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      <h:head>
+        <title>Buyer Home Page</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initiall-scale=1"/>
+        <meta http-equiv="X-UA-Conpatible" content="IE=edge"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <body>
+        <h:form>
+            <h:commandButton value="Home" action="index" class="btn-sm text-center" style="background-color: rgb(0, 180, 23); margin: 10px;"/>
+            
+           <h:dataTable value="#{pendingPOBean.pendingProducts}" var ="li" class="table table-bordered" border="1" cellpadding="5px" 
+                         style="border-collapse: collapse">
+                    <h:column>
+                        <h:outputLabel value="PO Number"/>
+                        <h:outputText value="#{li.line_number}" />
+                    </h:column>
+                       
+                    <h:column>
+                        <h:outputLabel value="Status:"/>
+                        <h:outputText value="#{li.status}"/>
+                    </h:column>
+
+                    <h:column>
+                        <h:outputLabel value="Total Amount"/>
+                        <h:outputText  value="$#{li.total_amount}" />
+                    </h:column>
+           </h:dataTable>
+        
+            <h:dataTable value="#{pendingPOBean.product}" var ="p" class="table table-bordered" border="1" cellpadding="5px" 
+                         style="border-collapse: collapse">
+            <h:column>
+                <h:outputText value="#{p.item_name}" />
+            </h:column>
+
+           
+            <h:column>
+                <h:outputText value="#{p.item_price}" />
+            </h:column>
+            <h:column>
+                <h:outputText value="#{p.item_quantity}" />
+            </h:column>
+</h:dataTable>
+            
+            
+            
+        </h:form>
+    </body>
+</html>

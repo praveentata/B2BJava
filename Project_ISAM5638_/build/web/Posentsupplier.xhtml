@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Shopping Cart</title>
+        <h2 align="center">TATA SOLUTION</h2>
+    </h:head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+    <h:body>
+        <h:form id="formInput">
+            <h2 align="center">Welcome to PO Sent to Supplier Page</h2>
+
+
+            <div class="table-responsive" >
+
+                <p:dataTable id="showpo" rows="#{shoppingCart1.posent().size()}" value="#{shoppingCart1.posent()}"  var="m" tableStyleClass="table table-striped">
+                    <f:selectItem itemLabel="By Product Name" itemValue="Product Name"></f:selectItem>
+                    <p:column>
+                        <f:facet name="header">Item(#)</f:facet>
+
+                        <h:outputText id="userval22" value="#{m.itnumber}" style="position: relative; left:50px"></h:outputText> 
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Product Name</f:facet>
+                        <h:outputText id="userval33" value="#{m.proname}" style="position: relative; left:100px"></h:outputText> 
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Price </f:facet>
+                        <h:outputText id="userval66" value="#{m.pri}" style="position: relative; left:120px"></h:outputText> 
+
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Quantity</f:facet>
+                        <h:outputText id="userval77" value="#{m.quant}" style="position: relative; left:120px"></h:outputText> 
+
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Total </f:facet>
+                        <h:outputText id="userval88" value="#{m.tot}" style="position: relative; left:120px"></h:outputText> 
+                    </p:column> 
+
+
+
+                    <p:column>
+                        <f:facet name="header">Status</f:facet>
+                        <h:outputText id="userval89" value="#{m.status}" style="position: relative; left:120px"></h:outputText> 
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputText id="userval90" value="#{m.date}" ></h:outputText> 
+                    </p:column> 
+                      
+                
+                    
+                </p:dataTable>                    
+
+                <h:commandButton value="Generate PO" immediate="true"  action="Generate_PO" 
+                                 class="btn-primary" style="position: relative; left:800px">
+
+                   <!-- <p:dataExporter type="pdf" target="showpo" fileName="P_O Generation" /> -->
+                </h:commandButton>
+                &nbsp;
+
+                <h:commandButton value="Return to Shoppingcart" immediate="true"  action="shoppingcart1" 
+                                 class="btn-primary" style="position: relative; left:800px"/>
+
+                &nbsp;
+
+                <h:commandButton value="Return to Home" immediate="true"  action="index" 
+                                 class="btn-primary" style="position: relative; left:800px"/>
+
+            </div> 
+
+        </h:form>
+
+    </h:body>
+</html>
+

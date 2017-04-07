@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      <h:head>
+        <title>Buyer Home Page</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initiall-scale=1"/>
+        <meta http-equiv="X-UA-Conpatible" content="IE=edge"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+        <div class='row' style="margin-top: 30px;">
+                 <div class="col-lg-12 col-md-6 text-center" style="background-color: black;">
+                    <div>
+                        <h:outputLabel id="user" style="color: white" class="input-lg"   value="Welcome #{loginJDBC.userName}"  />
+                         <h:inputText id="search" value="#{supplier.name}" p:placeholder="We will search it for you" class="input-lg"/>
+                        <h:commandButton value="Search" action="search" class="btn-sm text-center" style="background-color: #fff600; margin: 10px;"/>
+                     
+                        <h:selectOneMenu class="dropdown btn-lg  dropdown-toggle"  value="#{supplier.s_name}">
+                            <f:selectItems class="dropdown-menu" value="#{supplier.supplier}" />
+                        </h:selectOneMenu>      
+                        <h:commandButton value="Supplier Page" action="supplier" class="btn-sm text-center" style="background-color: #fff600; margin: 10px;"/>
+                    </div>
+                     <div>
+                    
+                        <h:selectOneMenu class="dropdown btn-lg  dropdown-toggle"  value="#{search.name_price}">
+                            <f:selectItems class="dropdown-menu" value="#{search.price_name}" />
+                            <f:ajax render="ajaxTable"/>
+                        </h:selectOneMenu>      
+                        
+                    
+                         <h:outputLabel style="color: white"/>
+                         <h:outputLabel style="color: white" value="Your cart : #{shoppingCart.cart.size()}"/>
+                <h:commandButton action="shoppingcart1" value="View Cart" class="btn-sm" style="background-color: rgb(0, 180, 23); margin: 10px;"/>
+                <h:link value="Logout" outcome="login"/>
+                     </div>
+                </div>
+        </div>
+
+            <h:dataTable id="ajaxTable"  value="#{search.loadAllProducts(search.name_price)}" var="p"
+                         class="table table-bordered" border="1" cellpadding="5px" 
+                         style="border-collapse: collapse">
+                  
+                
+                <h:column>
+                    <f:facet name="header"> Image </f:facet>
+                    <h:graphicImage value="#{p.item_image}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Name </f:facet>
+                    #{p.item_name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Price </f:facet>
+                    #{p.item_price}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Product Description </f:facet>
+                    #{p.item_description}
+                </h:column>   
+                <h:column>
+                    <f:facet name="header"> Quantity </f:facet>
+                    <h:inputText value="#{p.item_quantity}"/> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Select </f:facet>
+                    <h:selectBooleanCheckbox value="#{p.selected}"  />
+                </h:column>
+                <h:column>
+                   <h:commandButton action="#{shoppingCart.addToCart(p)}" value="Add to Cart" class="btn-sm" style="background-color: rgb(0, 180, 23); margin: 10px;"/>
+                   
+                </h:column>
+        </h:dataTable>
+            <h:commandButton action="#{shoppingCart.addAllToCart(search.loadAllProducts(search.name_price))}" value="Add all to Cart" class="btn-sm" style="background-color: rgb(0, 180, 23); margin: 10px;"/>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <table>
+                <tr>
+                    <td>
+                        <p:outputLabel id="first_name" value="First Name"/>
+                    </td>
+                    <td>
+                        <p:inputText id="txtFirstName" value="#{registrationBean1.first_name}" required="true" requiredMessage="Required"/>
+                    </td>
+                </tr>
+                  <tr>
+                    <td>
+                        <p:outputLabel id="last_name" value="Last Name"/>
+                    </td>
+                    <td>
+                        <p:inputText id="txtLastName" value="#{registrationBean1.last_name}" required="true" requiredMessage="Required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p:outputLabel id="user_name" value="User Name"/>
+                    </td>
+                    <td>
+                        <p:inputText id="txtUserName" value="#{registrationBean1.user_name}" required="true" requiredMessage="Required"/>
+                        <p:outputLabel value="#{registrationBean1.errorMessage}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p:outputLabel id="Password" value="Password"/>
+                    </td>
+                    <td>
+                        <p:password id="txtPassword" value="#{registrationBean1.password}" required="true" requiredMessage="Required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p:outputLabel id="confirm_password" value="Confirm Password" />
+                    </td>
+                    <td>
+                        <p:password id="txtConfirmPassword" value="#{registrationBean1.confirm_password}" required="true" requiredMessage="Required"/>
+                        <p:outputLabel value="#{registrationBean1.passError}"/>
+                    </td>
+                </tr>
+                 <tr>
+                     <td>
+                         <p:outputLabel id="gender" value="Gender"/>
+                     </td>
+                    <td>
+                        <h:selectOneRadio value="#{registrationBean1.gender}">
+                            <f:selectItem itemValue="Female" itemLabel="Female"/>
+                            <f:selectItem itemValue="Male" itemLabel="Male"/>
+                        </h:selectOneRadio>
+                        
+                    </td>
+                 </tr>
+                <tr>
+                    <td>
+                        <p:outputLabel id="dateOfBirth" value="Date of Birth"/>
+                    </td>
+                     <td>
+                         <p:calendar id="button"  showOn="button" pattern="yyyy/MM/dd" value="#{registrationBean1.date_of_birth}" />
+                    </td>
+                </tr>
+                <tr>
+                    <p:commandButton value="Register"  action="#{registrationBean1.submit(registrationBean1.user_name)}" />
+                </tr>
+            </table>
+        </h:form>
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+    </h:body>
+</html>
+

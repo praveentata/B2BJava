@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Generated PO</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     </h:head>
+    <body>
+        
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
+        <h:form id="formInput">
+            <h2 align="center">PO has been Generated for Following items sent to Supplier:</h2>
+        <p:dataTable id="showpo" rows="#{shoppingCart1.posent().size()}" value="#{shoppingCart1.posent()}"  var="m" tableStyleClass="table table-striped">
+                    <f:selectItem itemLabel="By Product Name" itemValue="Product Name"></f:selectItem>
+                    <p:column>
+                        <f:facet name="header">Item(#)</f:facet>
+
+                        <h:outputText id="userval22" value="#{m.itnumber}" style="position: relative; left:50px"></h:outputText> 
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Product Name</f:facet>
+                        <h:outputText id="userval33" value="#{m.proname}" style="position: relative; left:100px"></h:outputText> 
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Price </f:facet>
+                        <h:outputText id="userval66" value="#{m.pri}" style="position: relative; left:120px"></h:outputText> 
+
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Quantity</f:facet>
+                        <h:outputText id="userval77" value="#{m.quant}" style="position: relative; left:120px"></h:outputText> 
+
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Total </f:facet>
+                        <h:outputText id="userval88" value="#{m.tot}" style="position: relative; left:120px"></h:outputText> 
+                    </p:column> 
+
+
+                </p:dataTable> 
+            <br/>
+            <br/>
+             
+           <h:outputText value="Total tax: " style="position: relative; left:1580px"></h:outputText>
+
+           <h:outputLabel value="#{shoppingCart1.total()}"  style="position: relative; left:1600px"/>
+           <h:outputLabel value="#{shoppingCart1.tax1}"  style="position: relative; left:1600px"/>
+           
+            
+            
+            <h4> <div>
+                <h:outputText value="Grand total with Tax: " style="position: relative; left:1500px"></h:outputText>
+
+                <h:outputLabel value="#{shoppingCart1.totaltax}"  style="position: relative; left:1500px"/>
+                    
+                    <h:outputText value="Total Quantity: " style="position: relative; left:1000px"></h:outputText>
+
+                    <h:outputLabel value="#{shoppingCart1.quantity}"  style="position: relative; left:1000px"/>
+            </div></h4>
+            </h:form>
+    </body>
+</html>
